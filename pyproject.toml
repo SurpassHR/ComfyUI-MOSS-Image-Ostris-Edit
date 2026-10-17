@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-moss-image-ostris-edit" # Unique identifier for your node. Immutable after creation.
+description = "MOSS-Image edit (reference image) nodes for LoRAs trained with ai-toolkit. Encodes prompts + reference images through the MOSS-Image Qwen3.5 text encoder and patches the model to consume reference latents, with KV-cache conditioning on by default."
+version = "1.0.0" # Custom Node version. Must be semantically versioned.
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/ostris/ComfyUI-MOSS-Image-Ostris-Edit"
+
+[tool.comfy]
+PublisherId = "ostris"
+DisplayName = "MOSS-Image Ostris Edit"
+Icon = "https://ostris.com/wp-content/uploads/2026/07/004.jpg"

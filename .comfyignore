@@ -1,0 +1,10 @@
+# Files/dirs excluded from the Comfy Registry package
+# https://docs.comfy.org/registry/publishing#exclude-files-with-comfyignore
+.git/
+.github/
+.gitignore
+.comfyignore
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
