@@ -158,9 +158,15 @@ def _text_ids(text_len, device):
     return ids
 
 
-def _pe(dit, ids):
-    return dit.pe_embedder(ids.unsqueeze(0)).transpose(1, 2).contiguous()
+# def _pe(dit, ids):
+#     return dit.pe_embedder(ids.unsqueeze(0)).transpose(1, 2).contiguous()
 
+def _pe(dit, ids):
+    if hasattr(dit, "pe_embedder"):
+        return dit.pe_embedder(ids.unsqueeze(0)).transpose(1, 2).contiguous()
+    ids_b = ids.unsqueeze(0)
+    pe = torch.cat([comfy.ldm.flux.math.rope(ids_b[..., i], d, 10000) for i, d in enumerate(dit.rope_axes_dim)], dim=-3)
+    return pe.unsqueeze(1).transpose(1, 2).contiguous()
 
 def _modulation(dit, vec):
     return dit.shared_block_modulation(vec).unflatten(-1, (6, -1)).unsqueeze(2).unbind(1)
